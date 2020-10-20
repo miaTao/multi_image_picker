@@ -40,7 +40,7 @@ public class SwiftMultiImagePickerPlugin: NSObject, FlutterPlugin {
 
     let genericError = "500"
 
-    let vc = BSImagePickerViewController()
+    var vc = BSImagePickerViewController()
 
     init(messenger: FlutterBinaryMessenger) {
         self.messenger = messenger;
@@ -57,6 +57,7 @@ public class SwiftMultiImagePickerPlugin: NSObject, FlutterPlugin {
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         switch (call.method) {
         case "pickImages":
+            vc = BSImagePickerViewController() //mark change
             let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
             
             if (status == PHAuthorizationStatus.denied) {
